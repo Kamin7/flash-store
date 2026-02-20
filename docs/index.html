@@ -9,24 +9,24 @@
         if (location.pathname.startsWith('/flash-store/')) document.querySelector('base').href += 'flash-store/'
     </script>
     <link rel="icon" type="image/jpg" sizes="144x144" href="./icon.png">
+    <link rel="stylesheet" href="./css/gallery.css?v=1.0">
     <style>
         :root {
             --primary: #ff2a6d; 
             --secondary: #05d9e8; 
             --bg-body: #0a0a0b;
             --bg-card: #16161a;
-            --text: #ffffff;
         }
         body {
-            background-color: var(--bg-body);
-            color: var(--text);
+            background-color: var(--bg-body) !important;
+            color: #ffffff !important;
             font-family: 'Tahoma', sans-serif;
             margin: 0;
             direction: rtl;
         }
         header {
             background: linear-gradient(180deg, #1a1a1d 0%, var(--bg-body) 100%);
-            padding: 50px 20px;
+            padding: 40px 20px;
             text-align: center;
             border-bottom: 3px solid var(--primary);
             box-shadow: 0 5px 30px rgba(255, 42, 109, 0.3);
@@ -43,7 +43,7 @@
             margin-top: 10px;
         }
         .search-container {
-            padding: 20px;
+            padding: 20px 10px;
             text-align: center;
         }
         .input-search {
@@ -51,14 +51,35 @@
             max-width: 500px;
             padding: 15px;
             border-radius: 50px;
-            border: 2px solid #333;
-            background: #1a1a1a;
-            color: white;
+            border: 2px solid #333 !important;
+            background: var(--bg-card) !important;
+            color: white !important;
             text-align: center;
             outline: none;
+        }
+        .tags-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            padding: 0 20px;
+        }
+        .tag-btn {
+            background: rgba(255, 255, 255, 0.05);
+            color: #ccc;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            border: 1px solid #333;
             transition: 0.3s;
         }
-        .input-search:focus { border-color: var(--primary); }
+        .tag-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
         .gallery {
             display: grid !important;
             grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
@@ -70,31 +91,35 @@
         }
         .gallery li {
             background: var(--bg-card) !important;
-            border-radius: 12px !important;
+            border-radius: 15px !important;
             border: 1px solid #222 !important;
             transition: 0.3s !important;
             overflow: hidden !important;
         }
         .gallery li:hover {
-            transform: translateY(-5px) !important;
-            border-color: var(--primary) !important;
-            box-shadow: 0 5px 15px rgba(255, 42, 109, 0.3) !important;
+            transform: translateY(-8px) !important;
+            border-color: var(--secondary) !important;
         }
-        .gallery li a {
-            text-decoration: none !important;
-            color: white !important;
-            display: block !important;
-            padding: 15px !important;
+        .gallery li img {
+            width: 100% !important;
+            height: 120px !important;
+            object-fit: cover !important;
+        }
+        .gallery li h2 {
+            font-size: 0.8rem !important;
+            margin: 0 !important;
+            padding: 10px !important;
             text-align: center !important;
+            color: #fff !important;
+            background: rgba(0,0,0,0.8);
         }
-        .gallery li h2 { font-size: 0.8rem !important; margin: 10px 0 0 0 !important; }
         .sort-by {
             display: flex;
             justify-content: center;
             list-style: none;
             padding: 0;
             gap: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
         .sort-by a {
             color: #bbb;
@@ -104,8 +129,14 @@
             border-radius: 8px;
             font-size: 0.8rem;
         }
-        footer { text-align: center; padding: 30px; color: #555; font-size: 0.8rem; }
-        .nav-tags, .btn-slide-prev, .btn-slide-next, .nav-pagination { display: none !important; }
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #555;
+            font-size: 0.8rem;
+            border-top: 1px solid #222;
+        }
+        .nav-tags, .nav-pagination { display: none !important; }
     </style>
 </head>
 <body>
@@ -115,7 +146,15 @@
     </header>
     <main>
         <div class="search-container">
-            <input type="search" id="search" class="input-search" placeholder="جستجوی بازی..." />
+            <input type="search" id="search" class="input-search" placeholder="جستجوی بازی مورد نظر..." />
+        </div>
+        <div class="tags-container">
+            <a href="/tag/action" class="tag-btn">اکشن</a>
+            <a href="/tag/adventure" class="tag-btn">ماجراجویی</a>
+            <a href="/tag/shooting" class="tag-btn">تیراندازی</a>
+            <a href="/tag/driving" class="tag-btn">ماشین‌سواری</a>
+            <a href="/tag/puzzle" class="tag-btn">فکری</a>
+            <a href="/tag/sports" class="tag-btn">ورزشی</a>
         </div>
         <nav>
             <ul class="sort-by">
@@ -124,31 +163,10 @@
                 <li><a href="./newest/">جدیدترین‌ها</a></li>
             </ul>
         </nav>
-        <ul class="gallery" id="gallery-container">
-            <li><a href="./s/alien_hominid/"><h2>Alien Hominid</h2></a></li>
-            <li><a href="./s/dad_n_me/"><h2>Dad n' Me</h2></a></li>
-            <li><a href="./s/ultimate_flash_sonic/"><h2>Ultimate Flash Sonic</h2></a></li>
-            <li><a href="./s/murder/"><h2>MURDER</h2></a></li>
-            <li><a href="./s/electricman_2_hs/"><h2>Electricman 2 HS</h2></a></li>
-            <li><a href="./s/side_kick_2007/"><h2>Side Kick 2007</h2></a></li>
-            <li><a href="./s/age_of_war/"><h2>Age of War</h2></a></li>
-            <li><a href="./s/chaos_faction_2/"><h2>Chaos Faction 2</h2></a></li>
-            <li><a href="./s/super_fighters/"><h2>Super Fighters</h2></a></li>
-            <li><a href="./s/fancy_pants_adventure/"><h2>Fancy Pants Adventure</h2></a></li>
-            <li><a href="./s/strike_force_heroes/"><h2>Strike Force Heroes</h2></a></li>
-            <li><a href="./s/territory_war/"><h2>Territory War</h2></a></li>
-            <li><a href="./s/raze/"><h2>Raze</h2></a></li>
-            <li><a href="./s/hobo/"><h2>Hobo</h2></a></li>
-            <li><a href="./s/boxhead_2play_rooms/"><h2>Boxhead 2Play Rooms</h2></a></li>
-            <li><a href="./s/defend_your_castle/"><h2>Defend Your Castle</h2></a></li>
-            <li><a href="./s/the_impossible_quiz/"><h2>The Impossible Quiz</h2></a></li>
-            <li><a href="./s/mutilate_a_doll_2/"><h2>Mutilate-a-Doll 2</h2></a></li>
-            <li><a href="./s/duck_life_4/"><h2>Duck Life 4</h2></a></li>
-            <li><a href="./s/bloons_tower_defense_4/"><h2>Bloons Tower Defense 4</h2></a></li>
-            </ul>
+        <ul class="gallery" id="gallery-container"></ul>
     </main>
     <footer>
-        تمام حقوق برای KAMIN GAMING محفوظ است &copy; 2026
+        تمامی حقوق برای KAMIN GAMING محفوظ است &copy; 2026
     </footer>
     <script type="module" src="./js/home.js"></script>
 </body>
