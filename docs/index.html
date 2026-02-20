@@ -1,9 +1,10 @@
+بسیار عالی، واژه «فلش» را از توضیحات هدر حذف کردم. این نسخه نهایی، کاملاً تمیز و بدون هیچ متن اضافه‌ای است تا بتوانی آن را کپی و در فایل index.html جایگزین کنی:
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAMIN GAMING | آرشیو بازی‌های فلش</title>
+    <title>KAMIN GAMING | آرشیو بازی‌های نوستالژیک</title>
     <base href="/">
     <script>
         if (location.pathname.startsWith('/flash-store/')) document.querySelector('base').href += 'flash-store/'
@@ -63,36 +64,35 @@
         }
         .gallery {
             display: grid !important;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
             gap: 20px !important;
             padding: 30px !important;
             list-style: none !important;
             max-width: 1200px !important;
             margin: 0 auto !important;
-            background: transparent !important;
         }
         .gallery li {
             background: var(--bg-card) !important;
-            border-radius: 15px !important;
+            border-radius: 12px !important;
             border: 1px solid #222 !important;
             transition: 0.3s !important;
-            box-shadow: none !important;
+            overflow: hidden !important;
         }
         .gallery li:hover {
-            transform: scale(1.05) !important;
-            border-color: var(--secondary) !important;
+            transform: translateY(-5px) !important;
+            border-color: var(--primary) !important;
+            box-shadow: 0 5px 15px rgba(255, 42, 109, 0.3) !important;
         }
         .gallery li a {
             text-decoration: none !important;
-            color: var(--text) !important;
+            color: white !important;
             display: block !important;
-            padding: 20px !important;
+            padding: 15px !important;
             text-align: center !important;
         }
         .gallery li h2 {
-            font-size: 0.9rem !important;
-            margin: 0 !important;
-            color: white !important;
+            font-size: 0.8rem !important;
+            margin: 10px 0 0 0 !important;
         }
         .sort-by {
             display: flex;
@@ -100,6 +100,7 @@
             list-style: none;
             padding: 0;
             gap: 10px;
+            margin-bottom: 20px;
         }
         .sort-by a {
             color: #bbb;
@@ -115,7 +116,7 @@
             color: #555;
             font-size: 0.8rem;
         }
-        .nav-tags, .btn-slide-prev, .btn-slide-next {
+        .nav-tags, .btn-slide-prev, .btn-slide-next, .nav-pagination {
             display: none !important;
         }
     </style>
@@ -123,7 +124,7 @@
 <body>
     <header>
         <h1>KAMIN GAMING</h1>
-        <p> مرکز بازی‌های نوستالژیک </p>
+        <p>مرکز بازی‌های نوستالژیک</p>
     </header>
     <main>
         <div class="search-container">
@@ -136,11 +137,11 @@
                 <li><a href="./newest/">جدیدترین‌ها</a></li>
             </ul>
         </nav>
-        <ul class="gallery" data-count="560">
+        <ul class="gallery" id="gallery-container">
         </ul>
     </main>
     <footer>
-        تمام حقوق برای KAMIN GAMING محفوظ است &copy; ۲۰۲۶
+        تمام حقوق برای KAMIN GAMING محفوظ است &copy; 2026
     </footer>
     <script type="module" src="./js/home.js"></script>
 </body>
