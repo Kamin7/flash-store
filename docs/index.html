@@ -8,7 +8,6 @@
     <script>
         if (location.pathname.startsWith('/flash-store/')) document.querySelector('base').href += 'flash-store/'
     </script>
-    <link rel="manifest" href="./manifest.json">
     <link rel="icon" type="image/jpg" sizes="144x144" href="./icon.png">
     <style>
         :root {
@@ -63,34 +62,37 @@
             border-color: var(--primary);
         }
         .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 20px;
-            padding: 30px;
-            list-style: none;
-            max-width: 1200px;
-            margin: 0 auto;
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
+            gap: 20px !important;
+            padding: 30px !important;
+            list-style: none !important;
+            max-width: 1200px !important;
+            margin: 0 auto !important;
+            background: transparent !important;
         }
         .gallery li {
-            background: var(--bg-card);
-            border-radius: 15px;
-            border: 1px solid #222;
-            transition: 0.3s;
+            background: var(--bg-card) !important;
+            border-radius: 15px !important;
+            border: 1px solid #222 !important;
+            transition: 0.3s !important;
+            box-shadow: none !important;
         }
         .gallery li:hover {
-            transform: scale(1.05);
-            border-color: var(--secondary);
+            transform: scale(1.05) !important;
+            border-color: var(--secondary) !important;
         }
         .gallery li a {
-            text-decoration: none;
-            color: var(--text);
-            display: block;
-            padding: 20px;
-            text-align: center;
+            text-decoration: none !important;
+            color: var(--text) !important;
+            display: block !important;
+            padding: 20px !important;
+            text-align: center !important;
         }
         .gallery li h2 {
-            font-size: ۰.۹rem;
-            margin: 0;
+            font-size: 0.9rem !important;
+            margin: 0 !important;
+            color: white !important;
         }
         .sort-by {
             display: flex;
@@ -105,17 +107,16 @@
             background: #222;
             padding: 8px 15px;
             border-radius: 8px;
-            font-size: ۰.۸rem;
-        }
-        .sort-by a:hover {
-            background: var(--secondary);
-            color: #000;
+            font-size: 0.8rem;
         }
         footer {
             text-align: center;
             padding: 30px;
             color: #555;
-            font-size: ۰.۸rem;
+            font-size: 0.8rem;
+        }
+        .nav-tags, .btn-slide-prev, .btn-slide-next {
+            display: none !important;
         }
     </style>
 </head>
@@ -135,8 +136,8 @@
                 <li><a href="./newest/">جدیدترین‌ها</a></li>
             </ul>
         </nav>
-        <ul class="gallery">
-            </ul>
+        <ul class="gallery" data-count="560">
+        </ul>
     </main>
     <footer>
         تمام حقوق برای KAMIN GAMING محفوظ است &copy; ۲۰۲۶
